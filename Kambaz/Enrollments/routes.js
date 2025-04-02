@@ -1,5 +1,5 @@
 import * as enrollmentsDao from "./dao.js";
-import * as coursesDao from "/Users/nataliaivanov/kambaz-node-server-app/Kambaz/Courses/dao.js"
+import * as coursesDao from "../Courses/dao.js"
 
 export default function EnrollmentsRoutes(app) {
   app.post("/api/enrollments", async (req, res) => {
