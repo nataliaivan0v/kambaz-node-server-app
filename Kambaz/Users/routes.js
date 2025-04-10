@@ -102,7 +102,7 @@ export default function UserRoutes(app) {
   app.put("/api/users/:userId", updateUser);
   app.delete("/api/users/:userId", deleteUser);
   app.post("/api/users/signup", signup);
-  axios.post('/api/users/signin', data, {
+  app.post('/api/users/signin', data, {
     withCredentials: true
   });
   app.post("/api/users/signout", signout);
