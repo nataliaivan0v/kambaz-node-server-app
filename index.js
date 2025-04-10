@@ -18,7 +18,7 @@ const app = express();
 app.use(
   cors({
     credentials: true,
-    origin: process.env.NETLIFY_URL || "http://localhost:5173" || "https://nataliaivanov-cs4550-1.netlify.app",
+    origin: [process.env.NETLIFY_URL, 'http://localhost:5173', 'https://nataliaivanov-cs4550-1.netlify.app'],
   })
 );
 const sessionOptions = {
