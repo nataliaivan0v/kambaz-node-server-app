@@ -1,5 +1,5 @@
-import Database from "../Database/index.js";
 import model from "./model.js";
+import enrollmentsModel from "../Enrollments/model.js"
 import { v4 as uuidv4 } from "uuid";
 
 export function findAllCourses() {
@@ -8,7 +8,7 @@ export function findAllCourses() {
 
 export async function findCoursesForEnrolledUser(userId) {
   const courses = await findAllCourses();
-  const enrollments = Database.enrollments;
+  const enrollments = await enrollmentsModel.getAllEnrollments();
   const enrolledCourses = courses.filter((course) =>
     enrollments.some(
       (enrollment) =>

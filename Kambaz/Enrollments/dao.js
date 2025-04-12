@@ -1,10 +1,6 @@
-import Database from "../Database/index.js";
 import model from "./model.js";
 
-export function getAllEnrollments() {
-  const { enrollments } = Database;
-  return enrollments;
-}
+export const getAllEnrollments = () => model.find();
 
 export async function findCoursesForUser(userId) {
   const enrollments = await model.find({ user: userId }).populate("course");
