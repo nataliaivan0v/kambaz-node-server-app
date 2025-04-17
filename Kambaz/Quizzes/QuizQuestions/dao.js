@@ -2,8 +2,8 @@ import model from "./model.js";
 import { v4 as uuidv4 } from "uuid";
 
 export function findQuestionsForQuiz(quizId) {
-    
-    return model.find({ course: quizId });
+
+    return model.find({ quiz: quizId });
 }
 
 export function createQuestionsForQuiz(quiz) {

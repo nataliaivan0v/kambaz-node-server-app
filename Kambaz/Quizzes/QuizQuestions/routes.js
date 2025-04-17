@@ -8,6 +8,7 @@ export default function QuizQuestionRoutes(app) {
     const { quizId } = req.params;
     try {
       const questions = await dao.findQuestionsForQuiz(quizId);
+      console.log(questions)
       return res.json(questions);
     } catch (err) {
       console.error(err);
