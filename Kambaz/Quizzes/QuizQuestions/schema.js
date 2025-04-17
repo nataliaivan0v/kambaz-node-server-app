@@ -6,9 +6,8 @@ const quizSchema = new mongoose.Schema({
    type: String,
    points: Number,
    text: String,
-   choices: [String],
-   correct_answer_index: Number
+   choice: [String], // it's acutally a { id, string, correctChoice }
  },
- { collection: "quizquestion" }
+ { collection: "quizquestions" }
 );
 export default quizSchema;
