@@ -19,6 +19,7 @@ export default function QuizQuestionRoutes(app) {
   app.post('/api/quizzes/:quizId/questions', async (req, res) => {
     const { quizId } = req.params;
     const payload = { ...req.body, course: quizId };
+    console.log(payload)
     try {
       const newQuestion = await dao.createQuestionsForQuiz(payload);
       return res.status(201).json(newQuestion);
@@ -28,7 +29,7 @@ export default function QuizQuestionRoutes(app) {
     }
   });
 
-  app.put('/api/quizzes/:quizId/questions/:questionId', async (req, res) => {
+  app.put('/api/quizzes/:quizId/quizquestions/:questionId', async (req, res) => {
     const { questionId } = req.params;
     const updates = req.body;
     try {
