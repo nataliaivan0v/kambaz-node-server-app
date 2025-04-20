@@ -35,7 +35,6 @@ export async function bulkUpsertQuizQuestions(quizId, questions) {
                 }
             };
         } else {
-            // existing — update with upsert in case it doesn’t actually exist
             return {
                 updateOne: {
                     filter: { _id: q.id },
@@ -56,8 +55,9 @@ export async function bulkUpsertQuizQuestions(quizId, questions) {
         }
     });
 
-    // 2) Run the bulkWrite
-    const result = await model.bulkWrite(ops);
+    await model.bulkWrite(ops);
+    const result = findQuestionsForQuiz(quizId) 
+
     return result;
 }
 

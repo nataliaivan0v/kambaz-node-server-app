@@ -72,9 +72,8 @@ export default function QuizQuestionRoutes(app) {
           await dao.bulkDeleteQuizQuestions(deletedQuestionsIds);
         }
   
-        // 2) upsert the rest
         const result = await dao.bulkUpsertQuizQuestions(quizId, questions);
-        return res.json({ questions: result });
+        return res.json(result)
       } catch (err) {
         console.error(err);
         return res.status(500).json({ error: err.message });
