@@ -6,9 +6,10 @@ export function findQuestionsForQuiz(quizId) {
     return model.find({ quiz: quizId });
 }
 
-export function createQuestionsForQuiz(quizId, quiz) {
+export async function createQuestionsForQuiz(quizId, quiz) {
     const newAssignment = { ...quiz, _id: uuidv4(), quiz: quizId };
-    return model.create(newAssignment);
+    await model.create(newAssignment);
+    return findQuestionsForQuiz(quizId)
 }
 
 export function deleteQuizQuestion(quizQuestionId) {
@@ -19,13 +20,10 @@ export function updateQuiz(quizQuestionId, quizQuestionUpdates) {
     return model.updateOne({ _id: quizQuestionId }, quizQuestionUpdates);
 }
 export async function bulkUpsertQuizQuestions(quizId, questions) {
-    // 1) Build the array of operations
     const ops = questions.map(q => {
-        // detect “new” client‑side items (e.g. your UI might prefix with "new-")
         const isNewClient = !q.id || String(q.id).startsWith('new-');
 
         if (isNewClient) {
-            // strip out the temporary id, and generate a real _id
             const { id: _temp, ...rest } = q;
             return {
                 insertOne: {

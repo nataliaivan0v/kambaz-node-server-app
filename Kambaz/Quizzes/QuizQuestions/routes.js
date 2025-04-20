@@ -20,8 +20,7 @@ export default function QuizQuestionRoutes(app) {
     const payload = { ...req.body, course: quizId };
     try {
       const newQuestion = await dao.createQuestionsForQuiz(quizId, payload);
-      console.log("DFSDFF")
-      return res.status(201).json(newQuestion);
+      return res.json(newQuestion);
     } catch (err) {
       console.log("test")
       console.error(err);
@@ -33,14 +32,11 @@ export default function QuizQuestionRoutes(app) {
     const { quizId, questionId } = req.params;
     const updates = req.body;
     try {
-      console.log(questionId)
       const result = await dao.updateQuiz(questionId, updates);
-      console.log("RESULT")
-      console.log(result)
       if (result.modifiedCount === 0) {
         return res.status(404).json({ message: 'Question not found or no change made' });
       }
-      return res.json({ message: 'Updated successfully' });
+      return res.json()
     } catch (err) {
       console.error(err);
       return res.status(500).json({ error: err.message });
