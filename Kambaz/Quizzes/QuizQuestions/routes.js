@@ -1,7 +1,4 @@
-import model from "./model.js";
-
 import * as dao from "./dao.js";
-
 
 export default function QuizQuestionRoutes(app) {
   app.get('/api/quizzes/:quizId/questions', async (req, res) => {
